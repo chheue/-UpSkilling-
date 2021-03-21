@@ -1,11 +1,13 @@
 import React from 'react';
 import { useTranslate } from 'react-polyglot';
+import Navbar from '../components/navbar.component';
 
 const NotFound = () => {
   const t = useTranslate();
   return (
     <>
-      <h1>{t('404notFound')}</h1>
+      <Navbar />
+      <h1 className="title">{t('404notFound')}</h1>
     </>
   );
 };

@@ -10,6 +10,8 @@ import ListPublications from './containers/list-pub.container';
 import Publication from './containers/publication.container';
 import NotFound from './containers/not-found.container';
 
+import './main.css';
+
 const App = () => {
   const [locale, setLocale] = useState('en');
   const [messages, setMessages] = useState({});
@@ -41,8 +43,8 @@ const App = () => {
           </Switch>
         </BrowserRouter>
         {locale !== 'fr'
-          ? <button type="button" className="footer" onClick={() => setLocale('fr')}>French</button>
-          : <button type="button" className="footer" onClick={() => setLocale('en')}>Anglais</button>}
+          ? <button type="button" className="footer footer-btn" onClick={() => setLocale('fr')}>French</button>
+          : <button type="button" className="footer footer-btn" onClick={() => setLocale('en')}>Anglais</button>}
       </>
     </I18n>
   );
