@@ -6,7 +6,7 @@ const Navbar = () => {
   const t = useTranslate();
 
   return (
-    <div className="navbar">
+    <div className="my-navbar">
       <Link to="/" className="nav-link">
         {t('home')}
       </Link>

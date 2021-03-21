@@ -6,7 +6,7 @@ body {
   background-color: #161B21;
 }
 
-.navbar {
+.my-navbar {
   display: flex;
   background-color: #1E2834;
   padding: 15px 10px;
@@ -21,9 +21,27 @@ body {
 	text-decoration-color: white;
 }
 
+.container {
+  max-width: fit-content;
+}
+
 .title {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-content {
+  overflow: hidden;
+}
+
+.card-link {
+  color: peru;
+  font-weight: bold;
 }
 
 .footer {
