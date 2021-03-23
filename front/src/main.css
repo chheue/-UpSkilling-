@@ -31,8 +31,14 @@ body {
 }
 
 .card-container {
+  display: grid;
+  grid-template: '. . .';
+}
+
+.card-subtitle {
+  font-style: italic;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .card-content {
