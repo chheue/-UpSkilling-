@@ -2,26 +2,15 @@ import axios from 'axios';
 
 const URL = 'http://localhost:8080/publication';
 
-function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-    return data;
-  });
-}
-
-async function insert(title, content, author, creationDate) {
+async function insertPublication(title, content, author, creationDate) {
   const obj = {
     title,
     content,
     author,
     creationDate,
   };
-  const response = axios.post(URL, obj);
-  return handleResponse(response);
+  const response = await axios.post(URL, obj);
+  return response.data;
 }
 
 async function getAll() {
@@ -30,12 +19,29 @@ async function getAll() {
 }
 
 async function getById(id) {
-  const response = axios.get(`${URL}/${id}`);
-  return handleResponse(response);
+  const response = await axios.get(`${URL}/${id}`);
+  return response.data;
 }
 
+async function commentPublication(values, id) {
+  const response = await axios.put(`${URL}/${id}`, values);
+  return response.data;
+}
+
+async function getComments(id) {
+  const response = await axios.get(`${URL}/comments/${id}`);
+  return response.data;
+}
+
+async function searchPublication(title) {
+  const response = await axios.post(`${URL}/search`, { title });
+  return response.data;
+}
 export default {
-  insert,
+  insertPublication,
   getAll,
   getById,
+  commentPublication,
+  getComments,
+  searchPublication,
 };

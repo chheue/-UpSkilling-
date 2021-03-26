@@ -1,7 +1,7 @@
 import publicationsService from '../services/publications.service';
 import publicationsConstants from '../constants/publications.constant';
 
-function insert(title, content, author, creationDate) {
+function insertPublication(title, content, author, creationDate) {
   function request() {
     return { type: publicationsConstants.INSERT_REQUEST };
   }
@@ -16,7 +16,7 @@ function insert(title, content, author, creationDate) {
 
   return (dispatch) => {
     dispatch(request());
-    publicationsService.insert({
+    publicationsService.insertPublication({
       title, content, author, creationDate,
     }).then(() => {
       dispatch(success());
@@ -56,8 +56,8 @@ function getById(id) {
     return { type: publicationsConstants.GET_BY_ID_REQUEST, reqId };
   }
 
-  function success() {
-    return { type: publicationsConstants.GET_BY_ID_SUCCESS };
+  function success(publication) {
+    return { type: publicationsConstants.GET_BY_ID_SUCCESS, publication };
   }
 
   function failure(error) {
@@ -66,7 +66,7 @@ function getById(id) {
 
   return (dispatch) => {
     dispatch(request());
-    publicationsService.getId(id).then((publication) => {
+    publicationsService.getById(id).then((publication) => {
       dispatch(success(publication));
     }, (error) => {
       dispatch(failure(error.toString()));
@@ -75,8 +75,70 @@ function getById(id) {
   };
 }
 
+function commentPublication(values, id) {
+  function success() {
+    return { type: publicationsConstants.ADD_COMMENT_SUCCESS };
+  }
+
+  function failure(error) {
+    return { type: publicationsConstants.ADD_COMMENT_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    publicationsService.commentPublication(
+      values, id,
+    ).then(() => {
+      dispatch(success());
+    }, (error) => {
+      dispatch(failure(error.toString()));
+      alert(error.toString());
+    });
+  };
+}
+
+function getComments(id) {
+  function success(comments) {
+    return { type: publicationsConstants.GET_COMMENTS_SUCCESS, comments };
+  }
+
+  function failure(error) {
+    return { type: publicationsConstants.GET_COMMENTS_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    publicationsService.getComments(id).then((comments) => {
+      dispatch(success(comments));
+    }, (error) => {
+      dispatch(failure(error.toString()));
+      alert(error.toString());
+    });
+  };
+}
+
+function searchPublication(title) {
+  function success(items) {
+    return { type: publicationsConstants.SEARCH_SUCCESS, items };
+  }
+
+  function failure(error) {
+    return { type: publicationsConstants.SEARCH_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    publicationsService.searchPublication(title).then((items) => {
+      dispatch(success(items));
+    }, (error) => {
+      dispatch(failure(error.toString()));
+      alert(error.toString());
+    });
+  };
+}
+
 export default {
-  insert,
+  insertPublication,
   getAll,
   getById,
+  commentPublication,
+  getComments,
+  searchPublication,
 };

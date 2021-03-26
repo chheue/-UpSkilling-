@@ -1,13 +1,13 @@
 exports.up = function (knex) {
-  return knex.schema.createTableIfNotExists('publications', (table) => {
-    table.increments();
+  return knex.schema.createTable('publications', (table) => {
+    table.increments('id').primary().unsigned();
     table.string('title');
-    table.string('content');
+    table.text('content');
     table.string('author');
-    table.date('creationDate');
+    table.timestamp('creationDate').defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function (knex) {
-
+  return knex.schema.dropTable('publications');
 };

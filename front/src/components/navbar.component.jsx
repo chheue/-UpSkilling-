@@ -10,8 +10,8 @@ const Navbar = () => {
       <Link to="/" className="nav-link">
         {t('home')}
       </Link>
-      <Link to="/publication/list" className="nav-link">
-        {t('listPub')}
+      <Link to="/search" className="nav-link">
+        {t('search')}
       </Link>
     </div>
   );

@@ -1,8 +1,14 @@
 {
   "home": "Accueil",
-  "listPub": "Toutes les publications",
-  "pub": "Publication",
+  "search": "Chercher un article",
+  "pub": "Article",
   "404notFound": "404 Page non trouvé",
   "moreInfo": "En savoir plus",
-  "by": "Par"
+  "by": "Par",
+  "comments": "Commentaires",
+  "comment": "Commentaire",
+  "required": "Requis",
+  "submit": "Envoyer",
+  "author": "Auteur",
+  "title": "Titre"
 }

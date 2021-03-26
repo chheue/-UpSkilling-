@@ -30,6 +30,42 @@ body {
   padding: 30px;
 }
 
+.article-container {
+  text-align: center;
+  padding: 25px;
+  margin: 50px;
+  height: fit-content;
+  background-color: #363f49;
+}
+
+.comment-container {
+  text-align: center;
+  padding: 25px;
+  margin: 50px;
+  height: fit-content;
+}
+
+input {
+	border: none;
+  margin-inline: 400px;
+	padding: 15px 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 25px;
+  margin: 50px;
+}
+
+.separation-line {
+  align-content: flex-start;
+  background-color: white;
+  width: 250px;
+}
+
 .card-container {
   display: grid;
   grid-template: '. . .';
@@ -61,4 +97,19 @@ body {
 
 .footer-btn {
   border: transparent;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-container input {
+	padding: 15px 10px;
+  margin: 5px;
+}
+
+.search-container button {
+	padding: 15px 10px;
+  margin: 5px;
 }

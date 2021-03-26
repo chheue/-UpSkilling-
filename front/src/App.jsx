@@ -6,7 +6,7 @@ import { I18n } from 'react-polyglot';
 import fr from './translations/fr.json';
 import en from './translations/en.json';
 import Home from './containers/home.container';
-import ListPublications from './containers/list-pub.container';
+import SearchPublications from './containers/search.container';
 import Publication from './containers/publication.container';
 import NotFound from './containers/not-found.container';
 
@@ -37,7 +37,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/publication/list" component={ListPublications} />
+            <Route exact path="/search" component={SearchPublications} />
             <Route exact path="/publication/:id" component={Publication} />
             <Route path="*" component={NotFound} />
           </Switch>

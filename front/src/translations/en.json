@@ -1,8 +1,14 @@
 {
   "home": "Home",
-  "listPub": "All publications",
+  "search": "Search a publication",
   "pub": "Publication",
   "404notFound": "404 Page not found",
   "moreInfo": "Learn more",
-  "by": "By"
+  "by": "By",
+  "comments": "Comments",
+  "comment": "Comment",
+  "required": "Required",
+  "submit": "Submit",
+  "author": "Author",
+  "title": "Title"
 }
