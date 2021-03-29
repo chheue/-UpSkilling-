@@ -28,9 +28,7 @@ function getPublication(req, res, next) {
   }
   return publicationsService
     .getPublication(req.params.id)
-    .then((response) => {
-      res.status(response.status).json(response.message);
-    })
+    .then((response) => res.status(response.status).json(response.message))
     .catch((err) => next(err));
 }
 
@@ -71,6 +69,19 @@ function searchPublication(req, res, next) {
     .catch((err) => next(err));
 }
 
+function deletePublication(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  return publicationsService
+    .deletePublication(req.params.id)
+    .then((response) => {
+      res.status(response.status).json(response.message);
+    })
+    .catch((err) => next(err));
+}
+
 router.post(
   '/',
   body('title').isLength({ min: 3 }),
@@ -94,5 +105,7 @@ router.get('/comments/:id',
 router.post('/search',
   body('title').isLength({ min: 3 }),
   searchPublication);
-
+router.delete('/:id',
+  param('id').notEmpty(),
+  deletePublication);
 module.exports = router;

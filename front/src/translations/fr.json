@@ -10,5 +10,10 @@
   "required": "Requis",
   "submit": "Envoyer",
   "author": "Auteur",
-  "title": "Titre"
+  "title": "Titre",
+  "content": "Contenu",
+  "delete": "Supprimer",
+  "loading": "Chargement",
+  "errorFetch": "Impossible de récupérer les données",
+  "add": "Ajouter"
 }

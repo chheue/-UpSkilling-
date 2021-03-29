@@ -9,12 +9,12 @@ export default function insertPublications(state = {}, action) {
     case publicationsConstants.INSERT_SUCCESS:
       return {
         insertLoading: false,
-        insertPublication: true,
+        publicationInserted: true,
       };
     case publicationsConstants.INSERT_FAILURE:
       return {
         insertLoading: false,
-        insertPublication: false,
+        publicationInserted: false,
       };
     default:
       return state;

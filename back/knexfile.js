@@ -8,6 +8,9 @@ module.exports = {
       filename: './dev.sqlite3',
     },
     useNullAsDefault: true,
+    pool: {
+      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+    },
   },
 
   staging: {

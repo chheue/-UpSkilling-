@@ -8,6 +8,7 @@ import getPublication from '../reducers/get-publication.reducer';
 import insertComment from '../reducers/insert-comment.reducer';
 import getComments from '../reducers/get-comments.reducer';
 import searchPublication from '../reducers/search-publication.reducer';
+import deletePublication from '../reducers/delete-publication.reducer';
 
 const loggerMiddleware = createLogger();
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   insertComment,
   getComments,
   searchPublication,
+  deletePublication,
 });
 
 export default createStore(

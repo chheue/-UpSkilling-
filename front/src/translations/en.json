@@ -10,5 +10,10 @@
   "required": "Required",
   "submit": "Submit",
   "author": "Author",
-  "title": "Title"
+  "title": "Title",
+  "content": "Content",
+  "delete": "Delete",
+  "loading": "Loading",
+  "errorFetch": "Impossible to get data",
+  "add": "Add"
 }

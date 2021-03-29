@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-polyglot';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
+import format from 'date-fns/format';
+import { en, fr } from 'date-fns/locale';
+import parseJSON from 'date-fns/parseJSON';
 
 import publicationsAction from '../actions/publications.action';
 import Navbar from '../components/navbar.component';
+import LocaleContext from '../helpers/locale.context';
 
 const mapStateToProps = (state) => {
   const { publication } = state.getPublication;
@@ -23,8 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
 const Publication = ({
   publication, comments, getById, commentPublication, getComments,
 }) => {
-  const t = useTranslate();
   const { id } = useParams();
+  const { locale } = useContext(LocaleContext);
+  const [lang, setLang] = useState(en);
 
   useEffect(() => {
     getById(id);
@@ -34,6 +42,11 @@ const Publication = ({
     getComments(id);
   }, [comments.size]);
 
+  useEffect(() => {
+    setLang(locale === 'en' ? en : fr);
+  }, [locale]);
+
+  const t = useTranslate();
   return (
     <>
       <Navbar />
@@ -44,6 +57,8 @@ const Publication = ({
           </h1>
           <h5>
             <i>
+              {/* {todo Check format string (Normalement même que les autres mais format fonctionne pas)} } */}
+              {/* {`${t('by')} ${publication.author}, ${format(parseJSON(publication.creationDate).toString(), 'PPP', { locale: lang })}`} */}
               {`${t('by')} ${publication.author}, ${publication.creationDate}`}
             </i>
           </h5>
@@ -58,7 +73,7 @@ const Publication = ({
           {comments.map((comm) => (
             <div key={comm.id}>
               <p>{comm.comment}</p>
-              <p><i>{`${comm.author}`}</i></p>
+              <p><i>{`${comm.comment_author}`}</i></p>
               <hr className="separation-line" />
             </div>
           ))}
@@ -116,7 +131,7 @@ Publication.propTypes = {
   getById: PropTypes.func,
   commentPublication: PropTypes.func,
   getComments: PropTypes.func,
-  publication: PropTypes.arrayOf(PropTypes.object),
+  publication: PropTypes.object,
   comments: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -124,7 +139,7 @@ Publication.defaultProps = {
   getById: () => {},
   commentPublication: () => {},
   getComments: () => {},
-  publication: [],
+  publication: {},
   comments: [],
 };
 

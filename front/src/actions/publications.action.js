@@ -1,7 +1,7 @@
 import publicationsService from '../services/publications.service';
 import publicationsConstants from '../constants/publications.constant';
 
-function insertPublication(title, content, author, creationDate) {
+function insertPublication(values) {
   function request() {
     return { type: publicationsConstants.INSERT_REQUEST };
   }
@@ -16,9 +16,7 @@ function insertPublication(title, content, author, creationDate) {
 
   return (dispatch) => {
     dispatch(request());
-    publicationsService.insertPublication({
-      title, content, author, creationDate,
-    }).then(() => {
+    publicationsService.insertPublication(values).then(() => {
       dispatch(success());
     }, (error) => {
       dispatch(failure(error.toString()));
@@ -134,6 +132,30 @@ function searchPublication(title) {
   };
 }
 
+function deletePublication(id) {
+  function request() {
+    return { type: publicationsConstants.DELETE_PUBLICATION_REQUEST };
+  }
+
+  function success() {
+    return { type: publicationsConstants.DELETE_PUBLICATION_SUCCESS };
+  }
+
+  function failure(error) {
+    return { type: publicationsConstants.DELETE_PUBLICATION_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+    publicationsService.deletePublication(id).then(() => {
+      dispatch(success());
+    }, (error) => {
+      dispatch(failure(error.toString()));
+      alert(error.toString());
+    });
+  };
+}
+
 export default {
   insertPublication,
   getAll,
@@ -141,4 +163,5 @@ export default {
   commentPublication,
   getComments,
   searchPublication,
+  deletePublication,
 };

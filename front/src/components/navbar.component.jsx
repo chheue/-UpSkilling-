@@ -13,6 +13,9 @@ const Navbar = () => {
       <Link to="/search" className="nav-link">
         {t('search')}
       </Link>
+      <Link to="/admin" className="nav-link">
+        Administration
+      </Link>
     </div>
   );
 };

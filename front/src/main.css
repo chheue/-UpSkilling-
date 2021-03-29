@@ -47,7 +47,7 @@ body {
 
 input {
 	border: none;
-  margin-inline: 400px;
+  margin-inline: auto;
 	padding: 15px 10px;
 }
 
@@ -78,7 +78,14 @@ input {
 }
 
 .card-content {
+  display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.card-body {
+  padding: 5px 20px;
 }
 
 .card-link {

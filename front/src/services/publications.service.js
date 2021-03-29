@@ -2,14 +2,8 @@ import axios from 'axios';
 
 const URL = 'http://localhost:8080/publication';
 
-async function insertPublication(title, content, author, creationDate) {
-  const obj = {
-    title,
-    content,
-    author,
-    creationDate,
-  };
-  const response = await axios.post(URL, obj);
+async function insertPublication(values) {
+  const response = await axios.post(URL, values);
   return response.data;
 }
 
@@ -37,6 +31,11 @@ async function searchPublication(title) {
   const response = await axios.post(`${URL}/search`, { title });
   return response.data;
 }
+
+async function deletePublication(id) {
+  const response = await axios.delete(`${URL}/${id}`);
+  return response.data;
+}
 export default {
   insertPublication,
   getAll,
@@ -44,4 +43,5 @@ export default {
   commentPublication,
   getComments,
   searchPublication,
+  deletePublication,
 };
