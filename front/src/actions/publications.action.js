@@ -74,6 +74,10 @@ function getById(id) {
 }
 
 function commentPublication(values, id) {
+  function request() {
+    return { type: publicationsConstants.ADD_COMMENT_REQUEST };
+  }
+
   function success() {
     return { type: publicationsConstants.ADD_COMMENT_SUCCESS };
   }
@@ -83,6 +87,7 @@ function commentPublication(values, id) {
   }
 
   return (dispatch) => {
+    dispatch(request());
     publicationsService.commentPublication(
       values, id,
     ).then(() => {

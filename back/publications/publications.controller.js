@@ -96,7 +96,7 @@ router.get(
   getPublication,
 );
 router.put('/:id',
-  body('author').isLength({ min: 3 }),
+  body('comment_author').isLength({ min: 3 }),
   body('comment').isLength({ min: 3 }),
   commentPublication);
 router.get('/comments/:id',

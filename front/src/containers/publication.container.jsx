@@ -18,7 +18,8 @@ import LocaleContext from '../helpers/locale.context';
 const mapStateToProps = (state) => {
   const { publication } = state.getPublication;
   const { comments } = state.getComments;
-  return { publication, comments };
+  const { addComment } = state.insertComment;
+  return { publication, comments, addComment };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Publication = ({
-  publication, comments, getById, commentPublication, getComments,
+  publication, comments, addComment, getById, commentPublication, getComments,
 }) => {
   const { id } = useParams();
   const { locale } = useContext(LocaleContext);
@@ -40,7 +41,7 @@ const Publication = ({
 
   useEffect(() => {
     getComments(id);
-  }, [comments.size]);
+  }, [addComment]);
 
   useEffect(() => {
     setLang(locale === 'en' ? en : fr);
@@ -79,11 +80,11 @@ const Publication = ({
           ))}
         </div>
         <Formik
-          initialValues={{ author: '', comment: '' }}
+          initialValues={{ comment_author: '', comment: '' }}
           validate={(values) => {
             const errors = {};
-            if (!values.author) {
-              errors.author = t('required');
+            if (!values.comment_author) {
+              errors.comment_author = t('required');
             }
             if (!values.comment) {
               errors.comment = t('required');
@@ -109,8 +110,8 @@ const Publication = ({
           }) => (
             <form onSubmit={handleSubmit}>
               <div className="form-container">
-                <input type="text" name="author" placeholder={t('author')} onChange={handleChange} value={values.author} />
-                {errors.author}
+                <input type="text" name="comment_author" placeholder={t('author')} onChange={handleChange} value={values.comment_author} />
+                {errors.comment_author}
                 <br />
                 <input type="text" name="comment" placeholder={t('comment')} onChange={handleChange} value={values.comment} />
                 {errors.comment}
@@ -133,6 +134,7 @@ Publication.propTypes = {
   getComments: PropTypes.func,
   publication: PropTypes.object,
   comments: PropTypes.arrayOf(PropTypes.object),
+  addComment: PropTypes.bool,
 };
 
 Publication.defaultProps = {
@@ -141,6 +143,7 @@ Publication.defaultProps = {
   getComments: () => {},
   publication: {},
   comments: [],
+  addComment: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publication);

@@ -120,3 +120,20 @@ input {
 	padding: 15px 10px;
   margin: 5px;
 }
+
+.add-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 25px;
+  margin: 50px;
+}
+
+.add-container input {
+  border: 1px black solid;
+}
+
+.add-container button {
+  background-color: transparent;
+}

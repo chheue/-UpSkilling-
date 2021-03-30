@@ -48,6 +48,7 @@ const Admin = ({ insertPublication }) => {
             try {
               insertPublication(values);
               resetForm();
+              handleClose();
             } catch (e) {
               console.log(e);
             }
@@ -62,7 +63,7 @@ const Admin = ({ insertPublication }) => {
             isSubmitting,
           }) => (
             <form onSubmit={handleSubmit}>
-              <div className="form-container">
+              <div className="add-container">
                 <input type="text" name="author" placeholder={t('author')} onChange={handleChange} value={values.author} />
                 {errors.author}
                 <br />
